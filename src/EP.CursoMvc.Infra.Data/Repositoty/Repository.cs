@@ -16,7 +16,7 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
 
         protected Repository()
         {
-
+            //Teste
             Db = new CursoMvcContext();
 
             DbSet = Db.Set<TEntity>();
