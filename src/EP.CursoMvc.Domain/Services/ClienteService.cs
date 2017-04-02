@@ -1,6 +1,7 @@
 ﻿using EP.CursoMvc.Domain.Interfaces.Repository;
 using EP.CursoMvc.Domain.Interfaces.Services;
 using EP.CursoMvc.Domain.Model;
+using EP.CursoMvc.Domain.Validations.Clientes;
 using System;
 
 namespace EP.CursoMvc.Domain.Services
@@ -20,9 +21,13 @@ namespace EP.CursoMvc.Domain.Services
 
 
         public Cliente Adicionar(Cliente cliente)
-        {
+        { 
 
-            return _clienteRepository.Adicionar(cliente);
+            if (!cliente.EhValido()) return cliente;
+
+            cliente.ValidationResult = new ClienteAptoParaCadastroValidation(_clienteRepository).Validate(cliente);
+
+            return  !cliente.ValidationResult.IsValid? cliente : _clienteRepository.Adicionar(cliente);
         }
 
         public Cliente Atualizar(Cliente cliente)

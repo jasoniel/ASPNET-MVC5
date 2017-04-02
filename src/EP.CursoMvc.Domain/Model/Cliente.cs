@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EP.CursoMvc.Domain.Validations.Clientes;
+using System;
 using System.Collections.Generic;
 
 namespace EP.CursoMvc.Domain.Model
@@ -27,5 +28,12 @@ namespace EP.CursoMvc.Domain.Model
         public bool Excluido { get; set; }
 
         public virtual ICollection <Endereco> Enderecos { get; set; }
+
+        public override bool EhValido()
+        {
+            ValidationResult = new ClienteEstaConsistenteValidation().Validate(this);
+
+            return ValidationResult.IsValid;
+        }
     }
 }

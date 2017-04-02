@@ -4,13 +4,13 @@ using EP.CursoMvc.Application.ViewModels;
 using EP.CursoMvc.Domain.Interfaces.Repository;
 using EP.CursoMvc.Domain.Interfaces.Services;
 using EP.CursoMvc.Domain.Model;
-using EP.CursoMvc.Infra.Data.Repositoty;
+using EP.CursoMvc.Infra.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace EP.CursoMvc.Application.Services
 {
-    public class ClienteAppService : IClienteAppService
+    public class ClienteAppService : AppService, IClienteAppService
     {
 
         private readonly IClienteRepository _clienteRepository;
@@ -19,9 +19,12 @@ namespace EP.CursoMvc.Application.Services
 
 
 
-        public ClienteAppService()
+        public ClienteAppService(IClienteRepository clienteRepository ,
+                                IClienteService clienteService, 
+                                IUnitOfWork uow):base(uow)
         {
-            _clienteRepository = new ClienteRepository();
+            _clienteRepository = clienteRepository;
+            _clienteService = clienteService;
         }
 
         public ClienteEnderecoViewModel Adicionar(ClienteEnderecoViewModel clienteEnderecoViewModel)
@@ -34,7 +37,13 @@ namespace EP.CursoMvc.Application.Services
 
             cliente.Enderecos.Add(endereco);
 
-            var clienteReturn = _clienteRepository.Adicionar(cliente);
+            var clienteReturn = _clienteService.Adicionar(cliente);
+
+            //Validar ser o dominio nao reclamou de nada!
+            if (clienteReturn.ValidationResult.IsValid)
+            {
+                Commit();
+            }
 
             clienteEnderecoViewModel.Cliente = Mapper.Map<ClienteViewModel>(clienteReturn);
 
@@ -52,7 +61,7 @@ namespace EP.CursoMvc.Application.Services
 
             var cliente = Mapper.Map<Cliente>(clienteViewModel);
 
-            var clienteReturn = _clienteRepository.Atualizar(cliente);
+            var clienteReturn = _clienteService.Atualizar(cliente);
 
             return Mapper.Map<ClienteViewModel>(clienteReturn);
         }
@@ -87,7 +96,7 @@ namespace EP.CursoMvc.Application.Services
         public void Remover(Guid id)
         {
 
-            _clienteRepository.Remover(id);
+            _clienteService.Remover(id);
 
         }
     }

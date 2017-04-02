@@ -53,6 +53,9 @@ namespace EP.CursoMvc.Application.ViewModels
         [ScaffoldColumn(false)]
         public bool Excluido { get; set; }
 
+
+        public DomainValidation.Validation.ValidationResult ValidationResult { get; set; }
+
         public virtual ICollection<EnderecoViewModel> Enderecos { get; set; }
 
 

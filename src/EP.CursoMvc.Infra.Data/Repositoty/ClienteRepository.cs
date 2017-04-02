@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using EP.CursoMvc.Domain.Interfaces.Repository;
 using EP.CursoMvc.Domain.Model;
+using EP.CursoMvc.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
     {
 
+
+        public ClienteRepository(CursoMvcContext context) : base(context)
+        {
+
+        }
 
         public  IEnumerable<Cliente> ObterAtivos()
         {

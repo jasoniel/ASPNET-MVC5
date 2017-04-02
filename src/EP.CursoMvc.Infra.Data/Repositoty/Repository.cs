@@ -14,10 +14,10 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
         protected CursoMvcContext Db;
         protected DbSet<TEntity> DbSet;
 
-        protected Repository()
+        protected Repository(CursoMvcContext context)
         {
-            //Teste
-            Db = new CursoMvcContext();
+            
+            Db = context;
 
             DbSet = Db.Set<TEntity>();
 
@@ -28,7 +28,6 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
         {
 
             var objRet = DbSet.Add(obj);
-            SaveChanges();
 
             return objRet;
         }
@@ -40,7 +39,6 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
             DbSet.Attach(obj);
 
             entry.State = EntityState.Modified;
-            SaveChanges();
             return obj;
     
         }
@@ -67,7 +65,6 @@ namespace EP.CursoMvc.Infra.Data.Repositoty
         {
 
             DbSet.Remove(ObterPorId(id));
-            SaveChanges();
         }
 
         public virtual int SaveChanges()

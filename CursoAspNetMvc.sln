@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{7D2B8232-8901-4B8F-8138-CAA2EBE8D8F7}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ep.CursoMvc.UI.Site", "src\Ep.CursoMvc.UI.Site\Ep.CursoMvc.UI.Site.csproj", "{3E0FC869-EE56-4571-B07C-0EC8D24EA37F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EP.CursoMvc.Infra.CrossCutting.MvcFilters", "src\EP.CursoMvc.Infra.CrossCutting.MvcFilters\EP.CursoMvc.Infra.CrossCutting.MvcFilters.csproj", "{2C7A7E09-46D3-488A-BBAA-DD78941BBE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EP.CursoMvc.Infra.CrossCutting.IoC", "src\EP.CursoMvc.Infra.CrossCutting.IoC\EP.CursoMvc.Infra.CrossCutting.IoC.csproj", "{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{2C7A7E09-46D3-488A-BBAA-DD78941BBE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C7A7E09-46D3-488A-BBAA-DD78941BBE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C7A7E09-46D3-488A-BBAA-DD78941BBE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{47845C49-D2BB-42F6-B297-CC97D6F76FE7} = {CDAC0D6F-C654-4240-92DE-1D04C47AD099}
 		{3E0FC869-EE56-4571-B07C-0EC8D24EA37F} = {7D2B8232-8901-4B8F-8138-CAA2EBE8D8F7}
 		{2C7A7E09-46D3-488A-BBAA-DD78941BBE07} = {44A2A988-8EB3-4664-A63F-D6986DD1FEFD}
+		{95076B43-D9C4-4D75-AB2A-6C7D9C545CBE} = {44A2A988-8EB3-4664-A63F-D6986DD1FEFD}
 	EndGlobalSection
 EndGlobal

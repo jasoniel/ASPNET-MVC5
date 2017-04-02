@@ -1,5 +1,4 @@
 ﻿using EP.CursoMvc.Application.Interfaces;
-using EP.CursoMvc.Application.Services;
 using EP.CursoMvc.Application.ViewModels;
 using EP.CursoMvc.Infra.CrossCutting.MvcFilters;
 using System;
@@ -15,9 +14,9 @@ namespace Ep.CursoMvc.UI.Site.Controllers
         private readonly IClienteAppService _clienteAppService;
 
 
-        public ClientesController()
+        public ClientesController(IClienteAppService clienteAppService)
         {
-            _clienteAppService = new ClienteAppService();
+            _clienteAppService = clienteAppService;
         }
 
         [Route("listar-clientes")]
@@ -56,17 +55,21 @@ namespace Ep.CursoMvc.UI.Site.Controllers
         [ClaimsAuthorize("Cliente", "IN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( ClienteEnderecoViewModel clienteViewModel)
+        public ActionResult Create( ClienteEnderecoViewModel clienteEnderecoViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)  return View(clienteEnderecoViewModel);
+
+            clienteEnderecoViewModel = _clienteAppService.Adicionar(clienteEnderecoViewModel);
+
+            if (clienteEnderecoViewModel.Cliente.ValidationResult.IsValid) return RedirectToAction("Index");
+            
+            foreach(var error in clienteEnderecoViewModel.Cliente.ValidationResult.Erros)
             {
-
-                _clienteAppService.Adicionar(clienteViewModel);
-
-                return RedirectToAction("Index");
+                ModelState.AddModelError(String.Empty, error.Message);
             }
 
-            return View(clienteViewModel);
+            return View(clienteEnderecoViewModel);
+            
         }
 
 

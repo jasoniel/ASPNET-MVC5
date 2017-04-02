@@ -9,7 +9,7 @@ namespace EP.CursoMvc.Domain.Interfaces.Services
         Cliente Adicionar(Cliente cliente);
         Cliente Atualizar(Cliente cliente);
         void Remover(Guid id);
-
+ 
 
 
 

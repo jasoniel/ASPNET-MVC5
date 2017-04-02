@@ -10,6 +10,7 @@ namespace EP.CursoMvc.Domain.Model
         {
             Id = Guid.NewGuid();
         }
+
         public string Logradouro { get; set; }
 
         public string Numero { get; set; }
@@ -29,5 +30,11 @@ namespace EP.CursoMvc.Domain.Model
         
         //Propriedade de Navegação do EF
         public virtual Cliente Cliente { get; set; }
+
+        public override bool EhValido()
+        {
+
+            return true;
+        }
     }
 }
